@@ -1,6 +1,20 @@
 <template>
   <div class="hello">
-    <h3>全局components注册 使用</h3>
+    <div class="fix">
+      <ul>
+        <li>
+          <a href="header">
+            <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1547988687702&di=f40e13b63185580154c73b2eb4c011bc&imgtype=0&src=http%3A%2F%2Fwww.51yuansu.com%2Fpic2%2Fcover%2F00%2F32%2F40%2F5810ee42c3e43_610.jpg" alt="error">
+          </a>
+          </li>
+        <li>
+          <a href="#footer">
+            <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1547988687702&di=f40e13b63185580154c73b2eb4c011bc&imgtype=0&src=http%3A%2F%2Fwww.51yuansu.com%2Fpic2%2Fcover%2F00%2F32%2F40%2F5810ee42c3e43_610.jpg" alt="error">
+          </a>
+        </li>
+      </ul>
+    </div>
+    <h3 id="header">全局components注册 使用</h3>
     <h3>{{ msg }}</h3>
     <global-component></global-component>
     <hr>
@@ -74,7 +88,13 @@
           :id="index+1"
           @remove="todos.splice(index, 1)"></li>
       </ul>
+
+      <hr>
+      <h3>内联处理器传递特殊变量</h3>
+      <button @click="warning('this is a tip :D', $event)"></button>
     </div>
+
+    <footer id="footer"></footer>
   </div>
 </template>
 
@@ -147,23 +167,42 @@ export default {
         title: this.newTodoText
       })
       this.newTodoText = ''
+    },
+    warning (message, event) {
+      console.log(message, event)
+      if (event) event.preventDefault()
+      alert(message)
     }
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style lang="scss" scoped>
+.fix {
+  position: fixed;
+  top: 50%;
+  right: 20px;
+  transform: translate3d(0, -50%, 0);
+  li {
+    width: 20px;
+    height: 20px;
+    margin: 10px;
+    box-shadow:0 0 10px #2b2424;
+    border-radius: 50%;
+    overflow:hidden;
+    img {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
 h3 {
   margin: 40px 0 0;
 }
 ul {
   list-style-type: none;
   padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
 }
 a {
   color: #42b983;
