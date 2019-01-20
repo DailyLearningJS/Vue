@@ -191,6 +191,9 @@ export default {
     box-shadow:0 0 10px #2b2424;
     border-radius: 50%;
     overflow:hidden;
+    &:nth-child(1){
+      transform: rotate(180deg);
+    }
     img {
       width: 20px;
       height: 20px;
