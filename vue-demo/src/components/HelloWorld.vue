@@ -3,7 +3,7 @@
     <div class="fix">
       <ul>
         <li>
-          <a href="header">
+          <a href="#header">
             <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1547988687702&di=f40e13b63185580154c73b2eb4c011bc&imgtype=0&src=http%3A%2F%2Fwww.51yuansu.com%2Fpic2%2Fcover%2F00%2F32%2F40%2F5810ee42c3e43_610.jpg" alt="error">
           </a>
           </li>
@@ -88,11 +88,55 @@
           :id="index+1"
           @remove="todos.splice(index, 1)"></li>
       </ul>
-
-      <hr>
-      <h3>内联处理器传递特殊变量</h3>
-      <button @click="warning('this is a tip :D', $event)"></button>
     </div>
+    <hr>
+    <h3>内联处理器传递特殊变量</h3>
+    <button @click="warning('this is a tip :D', $event)">点我看看</button>
+
+    <hr>
+    <h3>事件修饰符</h3>
+    <!-- stop 阻止事件冒泡 -->
+    <div @click="parentPop">
+      <button @click.stop="childPop" > stop 点我试试看 </button>
+    </div>
+    <!-- prevent 阻止表单提交刷新页面，阻止默认事件 -->
+    <form @submit.prevent="warning">
+      <button>prevent 点我上传表单</button>
+    </form>
+     <form @submit.prevent>
+      <button>prevent 点我上传表单</button>
+    </form>
+
+    <!-- capture 优先调用本元素点击事件(捕获模式) -->
+    <div @click.capture="parentPop" style="padding:20px;background:gray;">
+      <button @click="childPop" > capture 点我试试看 </button>
+    </div>
+
+
+    <!-- self 只有当 event.tartget 是dom本身时才会触发 -->
+    <div @click.self="parentPop" style="padding:20px;background:gray;">
+      <button @click="childPop" > self 点我试试看 </button>
+    </div>
+    <!-- once 事件只会触发一次 -->
+    <div>
+      <button @click.once="childPop">点我只会触发一次</button>
+    </div>
+    
+    <div style="height:60px;background:gray;overflow:hidden;" @scroll.passive="onScroll">
+      <div style="height:200px;margin:20px;background:orange;"></div>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+
+
 
     <footer id="footer"></footer>
   </div>
@@ -172,6 +216,15 @@ export default {
       console.log(message, event)
       if (event) event.preventDefault()
       alert(message)
+    },
+    parentPop () {
+      alert('父弹窗出现')
+    },
+    childPop () {
+      alert('子弹窗出现')
+    },
+    onScroll () {
+      console.log('滚轮已经滑动')
     }
   }
 }
@@ -185,15 +238,23 @@ export default {
   right: 20px;
   transform: translate3d(0, -50%, 0);
   li {
+    transition: .35s ease;
     width: 20px;
     height: 20px;
     margin: 10px;
     box-shadow:0 0 10px #2b2424;
     border-radius: 50%;
     overflow:hidden;
+    &:hover {
+      transform: scale(1.5);
+    }
     &:nth-child(1){
       transform: rotate(180deg);
+      &:hover {
+        transform: scale(1.5) rotate(180deg);
+      }
     }
+    
     img {
       width: 20px;
       height: 20px;
@@ -209,5 +270,8 @@ ul {
 }
 a {
   color: #42b983;
+}
+div {
+  margin: 10px;
 }
 </style>
