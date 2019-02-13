@@ -125,8 +125,17 @@
     <div style="height:60px;background:gray;overflow:hidden;" @scroll.passive="onScroll">
       <div style="height:200px;margin:20px;background:orange;"></div>
     </div>
-    
 
+    <hr>
+    <h3>系统修饰符</h3>
+    <!-- Alt + C -->
+    <input @keyup.alt.67="alertMessage('alt + c')"> &nbsp;
+    <button @click.alt="alertMessage('alt + 点击')"> do something </button>
+    
+    <hr>
+    <h3>.exact 修饰符</h3>
+    <button @click.alt.exact="alertMessage('有且只有 alt 被按下时触发')">有且只有 alt 被按下时触发</button> &nbsp;
+    <button @click.exact="alertMessage('没有任何修饰符被按下才会触发')"> 没有任何系统修饰符被按下时候触发</button>
 
 
 
@@ -215,6 +224,9 @@ export default {
     warning (message, event) {
       console.log(message, event)
       if (event) event.preventDefault()
+      alert(message)
+    },
+    alertMessage (message) {
       alert(message)
     },
     parentPop () {
