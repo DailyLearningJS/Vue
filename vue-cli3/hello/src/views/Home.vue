@@ -14,9 +14,12 @@ export default {
   components: {
     HelloWorld
   },
-  data () {},
+  data () {
+    return {}
+  },
   created () {
-    console.log(_.chunk(['a', 'b', 'c', 'd'], 2))
+    // console.log(_.chunk(['a', 'b', 'c', 'd'], 2))
+    console.log(process.env)
   }
 }
 </script>
