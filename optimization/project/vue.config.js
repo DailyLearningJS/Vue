@@ -2,10 +2,11 @@ const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plugin')
 module.exports = {
+  publicPath: process.env.NODE_ENV === 'production' ? 'http://weijiyang.github.io/' : '/',
+  devServer: {
+    open: true
+  },
   configureWebpack: {
-    devServer: {
-      open: true
-    },
     plugins: [
       new webpack.DllReferencePlugin({
         context: process.cwd(),
