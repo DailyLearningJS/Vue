@@ -164,8 +164,13 @@
 
     <hr>
     <h3>trim 去掉绑定值的前后空格符</h3>
-    <input type="text" v-model.trim="notLazyText"> "{{notLazyText}}"
+    <input type="text" v-model.trim="notLazyText"> 去掉前后空格后的内容: "{{notLazyText}}"
 
+
+    <hr>
+    <h3>v-model简易实现</h3>
+    输入传入组件内容: <input type="text" v-model="notLazyText">
+    <global-component v-model="notLazyText"></global-component>
 
 
 
