@@ -137,6 +137,34 @@
     <button @click.alt.exact="alertMessage('有且只有 alt 被按下时触发')">有且只有 alt 被按下时触发</button> &nbsp;
     <button @click.exact="alertMessage('没有任何修饰符被按下才会触发')"> 没有任何系统修饰符被按下时候触发</button>
 
+    <hr>
+    <h3>复选框</h3>
+    <input
+      v-model="toggle"  
+      type="checkbox"
+      true-value="yes"
+      false-value="no"
+    >{{toggle}}
+
+    <hr>
+    <h3>单选按钮</h3>
+    <input type="radio" v-model="pick" v-for="item in pickArr" :key="item" v-bind:value="item">{{pick}}
+
+    
+    <hr>
+    <h3>lazy （默认情况v-model 在input事件触发时生效  如果想让其change事件生效的话 使用lazy 案例） </h3>
+    input事件触发数据同步： <input type="text" v-model="notLazyText" /> {{notLazyText}}<br/>
+    change时间触发数据同步： <input type="text" v-model.lazy="lazyText" /> {{lazyText}}
+
+    <hr>
+    <h3>v-model绑定数据处理(即使使用type=“number” 最终绑定的值也会为String类型)</h3>
+    自动将用户输入的值转换为数值类型: <br/>
+    <input v-model="notLazyText" /> "{{notLazyText}}"的数据类型是：{{typeof(notLazyText)}} &nbsp;&nbsp;&nbsp;
+    <input v-model.number="lazyText" /> "{{lazyText}}"的数据类型是：{{typeof(lazyText)}}
+
+    <hr>
+    <h3>trim 去掉绑定值的前后空格符</h3>
+    <input type="text" v-model.trim="notLazyText"> "{{notLazyText}}"
 
 
 
@@ -147,7 +175,8 @@
 
 
 
-    <footer id="footer"></footer>
+
+    <footer id="footer" style="padding-top: 60px;"></footer>
   </div>
 </template>
 
@@ -190,7 +219,12 @@ export default {
           title: 'Mow the lawn'
         }
       ],
-      nextTodoId: 4
+      nextTodoId: 4,
+      toggle: '我现在还没有被点击哦',
+      pick: '我还没有开始选择呢',
+      pickArr: ['我是第一个哦~', '我是第二个呦！'],
+      notLazyText: '',
+      lazyText: ''
     }
   },
   computed: {
