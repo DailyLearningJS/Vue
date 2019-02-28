@@ -6,12 +6,17 @@ import upperFirst from 'lodash/upperFirst'
 import camelCase from 'lodash/camelCase'
 import GlobalComponent from '@/components/GlobalComponent'
 import TodoItem from '@/components/TodoItem'
+import PropRules from '@/components/PropRules'
 Vue.use(ElementUI)
 Vue.config.productionTip = false
 
 Vue.component('GlobalComponent', GlobalComponent)
 Vue.component('TodoItem', TodoItem)
-
+Vue.component('blog-post', {
+  props: ['postTitle'],
+  template: '<h3>{{ postTitle }}</h3>'
+})
+Vue.component('prop-rules', PropRules)
 const requireComponent = require.context(
   './components/tempComponents',
   false,
@@ -31,3 +36,5 @@ requireComponent.keys().forEach(fileName => {
 new Vue({
   render: h => h(App),
 }).$mount('#app')
+
+// new Vue().$mount('#app-test')

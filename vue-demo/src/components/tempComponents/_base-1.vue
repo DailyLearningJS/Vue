@@ -9,4 +9,10 @@ export default {
         }
     }
 }
+
+// export const render = function(c) {
+//     return c('el-tag',{
+//         type:'info'
+//     },['标签一'])
+// }
 </script>

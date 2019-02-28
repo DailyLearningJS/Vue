@@ -172,9 +172,20 @@
     输入传入组件内容: <input type="text" v-model="notLazyText">
     <global-component v-model="notLazyText"></global-component>
 
-
+    <hr>
+    <h3>全局、局部组件注册&require.context多表单全局注册</h3>
+    <base-1></base-1>&nbsp;&nbsp;
     <base-2></base-2>
 
+    <hr>
+    <h3>prop大小写问题</h3>
+    <blog-post postTitle="这条不生效哦"></blog-post> “”放到模板index.html文件中不生效“”
+    <blog-post post-title="hello!"></blog-post>
+    
+    <hr>
+    <h3>prop验证</h3>
+    <!-- <prop-rules :propA="123" propB="this is a string" propC="this is required" propD="this have default string" :propE="{name: '糖少'}" propF="'other' is not in arr, so there is a eroor message here"></prop-rules> -->
+    <prop-rules :propA="123" propB="this is a string" propC="this is required" propD="this have default string" :propE="{name: '糖少'}" propF="danger"></prop-rules>
 
 
 
