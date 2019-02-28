@@ -173,7 +173,7 @@
     <global-component v-model="notLazyText"></global-component>
 
 
-
+    <base-2></base-2>
 
 
 
