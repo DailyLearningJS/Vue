@@ -8,6 +8,7 @@ import GlobalComponent from '@/components/GlobalComponent'
 import TodoItem from '@/components/TodoItem'
 import PropRules from '@/components/PropRules'
 import BootStrap from '@/components/BootstrapDateInput'
+import BaseCheckbox from '@/components/BaseCheckbox'
 Vue.use(ElementUI)
 Vue.config.productionTip = false
 
@@ -19,6 +20,31 @@ Vue.component('blog-post', {
 })
 Vue.component('prop-rules', PropRules)
 Vue.component('bootstrap-date', BootStrap)
+Vue.component('base-checkbox', BaseCheckbox)
+Vue.component('sync-component', {
+  props: {
+    title: {
+      type: String,
+      default: ''
+    }
+  },
+  methods: {
+    changeString () {
+      this.$emit('update:title', this.reverseMessage)
+    }
+  },
+  computed: {
+    reverseMessage () {
+      return this.title.split('').reverse().join('')
+    }
+  },
+  template: `
+  <div>
+    <h3 style="background:yellow;color:red;font-size:20px;">{{title}}</h3><br/>
+    <el-button @click="changeString">点我改变字符串</el-button>
+  </div>
+  `
+})
 const requireComponent = require.context(
   './components/tempComponents',
   false,
@@ -26,7 +52,6 @@ const requireComponent = require.context(
 )
 requireComponent.keys().forEach(fileName => {
   const componentConfig = requireComponent(fileName)
-  console.log(componentConfig)
   const componentName = upperFirst(
     camelCase(
       fileName.replace(/^\.\/_/, '').replace(/\.\w+$/, '')

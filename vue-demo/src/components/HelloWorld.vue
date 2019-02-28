@@ -193,7 +193,18 @@
     <bootstrap-date  type="text" placeholder="时间输入框替换到文本输入框了哦" data-date-picker="activated" class="other-class"></bootstrap-date>
 
 
+    <hr>
+    <h3>自定义checkbox组件</h3>
+    <el-tag type="danger">子组件model字段可以指定 v-model绑定属性名称以及相应的触发事件</el-tag>
+    <base-checkbox v-model="lovingVueCheck"></base-checkbox>
 
+
+    <hr>
+    <h3>sync 练习</h3>
+    原写法：
+    <sync-component :title="message" @update:title="message = $event"></sync-component>
+    sync语法糖写法：
+    <sync-component :title.sync="message"></sync-component>
 
 
     <footer id="footer" style="padding-top: 60px;"></footer>
@@ -208,6 +219,7 @@ export default {
   },
   data () {
     return {
+      message: 'hello, everyone!',
       num: 0,
       htmlData: "<span style='color:red;'>这里是html语句哦~</span>",
       firstName: '-',
@@ -244,7 +256,8 @@ export default {
       pick: '我还没有开始选择呢',
       pickArr: ['我是第一个哦~', '我是第二个呦！'],
       notLazyText: '',
-      lazyText: ''
+      lazyText: '',
+      lovingVueCheck: undefined
     }
   },
   computed: {
