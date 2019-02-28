@@ -7,6 +7,7 @@ import camelCase from 'lodash/camelCase'
 import GlobalComponent from '@/components/GlobalComponent'
 import TodoItem from '@/components/TodoItem'
 import PropRules from '@/components/PropRules'
+import BootStrap from '@/components/BootstrapDateInput'
 Vue.use(ElementUI)
 Vue.config.productionTip = false
 
@@ -17,6 +18,7 @@ Vue.component('blog-post', {
   template: '<h3>{{ postTitle }}</h3>'
 })
 Vue.component('prop-rules', PropRules)
+Vue.component('bootstrap-date', BootStrap)
 const requireComponent = require.context(
   './components/tempComponents',
   false,

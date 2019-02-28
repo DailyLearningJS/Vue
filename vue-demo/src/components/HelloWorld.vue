@@ -187,6 +187,10 @@
     <!-- <prop-rules :propA="123" propB="this is a string" propC="this is required" propD="this have default string" :propE="{name: '糖少'}" propF="'other' is not in arr, so there is a eroor message here"></prop-rules> -->
     <prop-rules :propA="123" propB="this is a string" propC="this is required" propD="this have default string" :propE="{name: '糖少'}" propF="danger"></prop-rules>
 
+    <hr>
+    <h3>prop覆盖 替换合并已有特性</h3>
+    <el-tag type="danger">注意：组件中没有声明的props会赋值到最外层的dom元素上！！！！ template 内层如果有div会赋值到div上面</el-tag><br/>
+    <bootstrap-date  type="text" placeholder="时间输入框替换到文本输入框了哦" data-date-picker="activated" class="other-class"></bootstrap-date>
 
 
 
