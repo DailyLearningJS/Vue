@@ -45,6 +45,14 @@ Vue.component('sync-component', {
   </div>
   `
 })
+Vue.component('slot-component', {
+  template: `
+    <div>
+      <slot>插槽没有内容哦</slot>
+      <slot name="content"></slot>
+    </div>
+  `
+})
 const requireComponent = require.context(
   './components/tempComponents',
   false,

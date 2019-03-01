@@ -206,6 +206,19 @@
     sync语法糖写法：
     <sync-component :title.sync="message"></sync-component>
 
+    <hr>
+    <h3>插槽</h3>
+    <slot-component>插槽demo</slot-component>
+    <slot-component></slot-component>
+
+    <hr>
+    <h3>具名插槽</h3>
+    <slot-component>
+      <!-- 默认插槽信息 -->
+      <template v-slot:content>
+        <el-tag  type="success" >这里是具名插槽信息哦</el-tag>
+      </template>
+    </slot-component>
 
     <footer id="footer" style="padding-top: 60px;"></footer>
   </div>
