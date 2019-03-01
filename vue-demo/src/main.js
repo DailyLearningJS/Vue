@@ -48,10 +48,20 @@ Vue.component('sync-component', {
 Vue.component('slot-component', {
   template: `
     <div>
-      <slot>插槽没有内容哦</slot>
+      <slot><el-tag type="danger">插槽没有内容哦</el-tag></slot><br/>
       <slot name="content"></slot>
+      <slot name="slotProp" :user="user"></slot>
     </div>
-  `
+  `,
+  data () {
+    return {
+      user: {
+        name: '糖·少',
+        sex: 'boy',
+        age: 0
+      }
+    }
+  }
 })
 const requireComponent = require.context(
   './components/tempComponents',

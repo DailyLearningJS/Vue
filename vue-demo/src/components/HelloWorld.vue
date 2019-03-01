@@ -127,7 +127,7 @@
     </div>
 
     <hr>
-    <h3>系统修饰符</h3>
+    <h3>系统修饰符  ?????????????mac本如何实现监听ctrl+click事件</h3>
     <!-- Alt + C -->
     <input @keyup.alt.67="alertMessage('alt + c')"> &nbsp;
     <button @click.alt="alertMessage('alt + 点击')"> do something </button>
@@ -212,11 +212,19 @@
     <slot-component></slot-component>
 
     <hr>
-    <h3>具名插槽</h3>
+    <h3>具名插槽(2.5版本下 具名插槽后备信息不展示 2.6之后解决)</h3>
     <slot-component>
-      <!-- 默认插槽信息 -->
+      默认插槽信息
       <template v-slot:content>
         <el-tag  type="success" >这里是具名插槽信息哦</el-tag>
+      </template>
+    </slot-component>
+
+    <hr>
+    <h3>作用域插槽</h3>
+    <slot-component>
+      <template v-slot:slotProp="scopeProps">
+        {{scopeProps}} <el-button @click="scopeProps.user.age++">点我涨岁数</el-button>
       </template>
     </slot-component>
 
