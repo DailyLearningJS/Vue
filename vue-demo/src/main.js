@@ -48,9 +48,9 @@ Vue.component('sync-component', {
 Vue.component('slot-component', {
   template: `
     <div>
-      <slot><el-tag type="danger">插槽没有内容哦</el-tag></slot><br/>
-      <slot name="content"></slot>
-      <slot name="slotProp" :user="user"></slot>
+      <slot><el-tag type="danger">普通插槽没有内容哦</el-tag></slot><br/>
+      <slot name="content">具名插槽没有内容哦</slot><br/>
+      <slot name="slotProp" :user="user"> slot prop插槽没有内容哦 </slot>
     </div>
   `,
   data () {
@@ -62,6 +62,41 @@ Vue.component('slot-component', {
       }
     }
   }
+})
+Vue.component('slot-other-component', {
+  template: `
+    <div>
+      <slot :user="user"><el-tag type="danger">普通插槽没有内容哦</el-tag></slot>
+    </div>
+  `,
+  data () {
+    return {
+      user: {
+        name: '糖·少',
+        sex: 'boy',
+        age: 0
+      }
+    }
+  }
+})
+Vue.component('todo-slot', {
+  data () {
+    return {
+      filterTodos: [
+        {id: 1, text: '健身', isComplete: false},
+        {id: 2, text: '睡懒觉', isComplete: true},
+      ]
+    }
+  },
+  template: `
+    <ul>
+      <li v-for="todo in filterTodos" :key="todo.id">
+        <slot :todos="todo">
+          这条信息没有内容哦  （应该出现{{todo.text}}才对哦）
+        </slot>
+      </li>
+    </ul>
+  `
 })
 const requireComponent = require.context(
   './components/tempComponents',

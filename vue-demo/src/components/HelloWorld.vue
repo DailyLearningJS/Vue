@@ -228,6 +228,50 @@
       </template>
     </slot-component>
 
+    <hr>
+    <h3>解构插槽</h3>
+    <slot-other-component v-slot="{ user }">
+      {{user.name}}
+    </slot-other-component>
+    <slot-other-component v-slot="{ user: person }">
+      {{person.name}}
+    </slot-other-component>
+
+    <!-- 赋默认值写法不争取？？？？？？？？？？？？？？？？？？
+    <slot-other-component v-slot="{ user = { name: 'xxxx'} }">
+      {{user.name}}
+    </slot-other-component> -->
+
+    <hr>
+    <h3>动态插槽</h3>
+    <el-button @click="changeDynamicSlotName">点我动态切换插槽</el-button>
+    <slot-component>
+      <template v-slot:[dynamicSlotName]>
+        {{dynamicSlotName === 'default' ? 'default 插槽' : dynamicSlotName === 'content' ? 'content 插槽' : 'slot prop插槽'}}
+      </template>
+    </slot-component>
+
+    <hr>
+    <h3>具名插槽缩写</h3>
+    <slot-component>
+      <template #content>这里是 content 内容</template>
+      <template #slotProp>这里是 slotProp 内容</template>
+      <template #default>这里是 default 内容</template>
+    </slot-component>
+
+    <hr>
+    <h3>插槽实战练习 todolist</h3>
+    <todo-slot>
+     <template #default="{ todos }">
+        <span v-if="todos.isComplete">✓</span>
+        <span v-else>未完成{{todos.text}}</span>
+     </template>
+    </todo-slot>
+
+
+
+
+
     <footer id="footer" style="padding-top: 60px;"></footer>
   </div>
 </template>
@@ -278,7 +322,8 @@ export default {
       pickArr: ['我是第一个哦~', '我是第二个呦！'],
       notLazyText: '',
       lazyText: '',
-      lovingVueCheck: undefined
+      lovingVueCheck: undefined,
+      dynamicSlotName: 'default'
     }
   },
   computed: {
@@ -325,6 +370,11 @@ export default {
     },
     onScroll () {
       console.log('滚轮已经滑动')
+    },
+    changeDynamicSlotName () {
+      let arr = ['default', 'content', 'slotProp']
+      this.dynamicSlotName = arr[Math.floor(Math.random()*3)]
+      console.log(this.dynamicSlotName)
     }
   }
 }
