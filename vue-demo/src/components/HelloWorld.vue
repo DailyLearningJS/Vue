@@ -131,7 +131,7 @@
     <!-- Alt + C -->
     <input @keyup.alt.67="alertMessage('alt + c')"> &nbsp;
     <button @click.alt="alertMessage('alt + 点击')"> do something </button>
-    
+    <!-- <button @click.17="alertMessage('ctrl + 点击')">点我监听ctrl + click</button> -->
     <hr>
     <h3>.exact 修饰符</h3>
     <button @click.alt.exact="alertMessage('有且只有 alt 被按下时触发')">有且只有 alt 被按下时触发</button> &nbsp;
@@ -269,6 +269,15 @@
     </todo-slot>
 
 
+    <hr>
+    <h3>访问根元素 ？？？？？？？？？？？？？？？$root无法获取到相应内容 $parent可以</h3>
+    
+    <hr>
+    <h3>依赖注入</h3>
+    <inject-component></inject-component>
+
+    <hr>
+    <h3>程序化事件监听</h3>
 
 
 

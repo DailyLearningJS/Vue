@@ -6,15 +6,24 @@
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
-
 export default {
   name: 'app',
+  data () {
+    return {
+      rootName: 'this is root',
+      str: 'hello , this is a rootNum'
+    }
+  },
+  provide () {
+    return {
+      rootStr: this.str
+    }
+  },
   components: {
     HelloWorld
   }
 }
 </script>
-
 <style>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;

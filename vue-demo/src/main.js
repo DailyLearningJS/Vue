@@ -88,6 +88,9 @@ Vue.component('todo-slot', {
       ]
     }
   },
+  created () {
+    console.log(this.$root, this.$parent)
+  },
   template: `
     <ul>
       <li v-for="todo in filterTodos" :key="todo.id">
@@ -96,6 +99,22 @@ Vue.component('todo-slot', {
         </slot>
       </li>
     </ul>
+  `
+})
+
+Vue.component('inject-component', {
+  inject: ['rootStr'],
+  methods: {
+    doSomething () {
+      console.log('已经触发点击事件', this.rootStr.split('').reverse().join(''))
+      this.rootStr = this.rootStr.split('').reverse().join('')
+    }
+  },
+  template: `
+  <div>
+    <el-tag type="danger">避免直接更改inject获取到的值  直接更改控制台会报error 且不会直接对根实例造成影响！！！</el-tag><br>
+    {{rootStr}} <el-button @click="doSomething">点我尝试更改rootStr内容</el-button>
+  </div>
   `
 })
 const requireComponent = require.context(
