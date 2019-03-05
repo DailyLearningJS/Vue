@@ -301,18 +301,121 @@
     <hr>
     <h3> 通过v-once 创建低开销的静态组件  </h3>
     <v-once-component></v-once-component>
-    
     <hr>
-    <h3> 通过v-once 创建低开销的静态组件  </h3>
+    <h3> 单元素、组件过渡  </h3>
+    <div id="demo">
+      <button v-on:click="show = !show">
+        Toggle
+      </button>&nbsp;
+      <span v-if="show">hello</span>&nbsp;
+      <transition name="fade">
+        <span v-if="show">hello</span>
+      </transition>
+    </div>
 
 
+    <div id="example-1">
+      <button @click="show = !show">
+        Toggle render
+      </button>
+      <transition name="slide-fade">
+        <p v-if="show">hello</p>
+      </transition>
+    </div>
+
+    <div id="example-2">
+      <button @click="show = !show">Toggle show</button>
+      <transition name="bounce">
+        <p v-if="show">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris facilisis enim libero, at lacinia diam fermentum id. Pellentesque habitant morbi tristique senectus et netus.</p>
+      </transition>
+    </div>
+
+    <hr>
+    <h3> transition 过渡持续时间  </h3>
+    <button @click="show = !show">transition 持续时间  </button>
+    <transition :duration="5000">
+      <p v-if="show">hello</p>
+    </transition>
+    <transition :duration="{enter: 5000, leave: 8000}">
+      <p v-if="show">hello</p>
+    </transition>
 
 
+    <hr>
+    <h3>transition mode 练习</h3>
+    <div>
+      <h4>无mode </h4>
+      <transition name="mode">
+        <button @click="show = !show" :key="show ? 'on' : 'off'">{{show ? 'on' : 'off'}}</button>
+      </transition>
 
+      <h4>in-out</h4>
+      <transition name="mode" mode="in-out">
+        <button @click="show = !show" :key="show ? 'on' : 'off'">{{show ? 'on' : 'off'}}</button>
+      </transition>
+
+      <h4>out-in</h4>
+      <transition name="mode" mode="out-in">
+        <button @click="show = !show" :key="show ? 'on' : 'off'">{{show ? 'on' : 'off'}}</button>
+      </transition>
+    </div>
+    
 
     <footer id="footer" style="padding-top: 60px;"></footer>
   </div>
 </template>
+<style>
+.mode-enter-active, .mode-leave-active {
+  transition: all .5s ease;
+}
+.mode-enter, .mode-leave-to{
+  transform: translateX(10px);
+  opacity: 0;
+}
+.mode-leave, .mode-enter-to {
+  transform: translateX(0px);
+  opacity: 1;
+}
+.v-enter, .v-leave-to {
+  margin-left: 500px;
+}
+.v-leave, .v-enter-to {
+  margin-left: -500px;
+}
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+.slide-fade-enter-active {
+  transition: all .3s ease;
+}
+.slide-fade-leave-active {
+  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-enter, .slide-fade-leave-to {
+  transform: translateX(10px);
+  opacity: 0;
+}
+.bounce-enter-active {
+  animation: bounce-in .5s;
+}
+.bounce-leave-active {
+  animation: bounce-in .5s reverse;
+}
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.5)
+  }
+  100% {
+    transform: scale(1)
+  }
+}
+</style>
 
 <script>
 export default {
@@ -322,6 +425,7 @@ export default {
   },
   data () {
     return {
+      show: false,
       message: 'hello, everyone!',
       num: 0,
       htmlData: "<span style='color:red;'>这里是html语句哦~</span>",
