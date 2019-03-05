@@ -131,7 +131,7 @@
     <!-- Alt + C -->
     <input @keyup.alt.67="alertMessage('alt + c')"> &nbsp;
     <button @click.alt="alertMessage('alt + 点击')"> do something </button>
-    <!-- <button @click.17="alertMessage('ctrl + 点击')">点我监听ctrl + click</button> -->
+    <button @click.ctrl="alertMessage('ctrl + 点击')">点我监听ctrl + click</button>
     <hr>
     <h3>.exact 修饰符</h3>
     <button @click.alt.exact="alertMessage('有且只有 alt 被按下时触发')">有且只有 alt 被按下时触发</button> &nbsp;
@@ -277,7 +277,36 @@
     <inject-component></inject-component>
 
     <hr>
-    <h3>程序化事件监听</h3>
+    <h3>程序化事件监听 ？？？？？？？？？？？？？？？？？？？？？？？待验证</h3>
+
+
+    <hr>
+    <h3>组件递归调用</h3>
+    <digui-component :children="tree"></digui-component>
+
+
+    <hr>
+    <h3>内联模板 会覆盖掉默认的slot模板</h3>
+    <slot-component inline-template>
+      <div>
+          <p>These are compiled as the component's own template.</p>
+          <p>Not parent's transclusion content.</p>
+      </div>
+    </slot-component>
+
+    <hr>
+    <h3>x-template</h3>
+    <hello-me></hello-me>
+
+    <hr>
+    <h3> 通过v-once 创建低开销的静态组件  </h3>
+    <v-once-component></v-once-component>
+    
+    <hr>
+    <h3> 通过v-once 创建低开销的静态组件  </h3>
+
+
+
 
 
 
@@ -332,7 +361,16 @@ export default {
       notLazyText: '',
       lazyText: '',
       lovingVueCheck: undefined,
-      dynamicSlotName: 'default'
+      dynamicSlotName: 'default',
+      tree: {
+        text: '爷爷',
+        children: {
+          text: '爸爸',
+          children: {
+            text: '我'
+          }
+        }
+      }
     }
   },
   computed: {

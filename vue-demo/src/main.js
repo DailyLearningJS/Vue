@@ -90,6 +90,15 @@ Vue.component('todo-slot', {
   },
   created () {
     console.log(this.$root, this.$parent)
+    this.$on('click', () => {
+      console.log('您处罚了点击事件')
+    })
+    this.$off('click', () => {
+      console.log('监听了移除点击事件')
+    })
+    this.$once('click', () => {
+      console.log('一次性监听点击事件')
+    })
   },
   template: `
     <ul>
@@ -101,7 +110,6 @@ Vue.component('todo-slot', {
     </ul>
   `
 })
-
 Vue.component('inject-component', {
   inject: ['rootStr'],
   methods: {
@@ -117,6 +125,43 @@ Vue.component('inject-component', {
   </div>
   `
 })
+
+Vue.component('digui-component', {
+  props: ['children'],
+  template: `
+  <span  style="margin-left:10px;">
+    <span v-if="children.children">{{children.text}}--></span>
+    <span v-else style="color:red;">{{children.text}}</span>
+    <digui-component v-if="children.children" :children="children.children"></digui-component>
+  </span>
+  `
+})
+
+Vue.component('hello-me', {
+  template: '#hello-world'
+})
+
+
+Vue.component('v-once-component', {
+  data () {
+    return {
+      rootStr: "my name is 糖少, i'm a boy"
+    }
+  },
+  methods: {
+    doSomething () {
+      console.log('已经触发点击事件', this.rootStr.split('').reverse().join(''))
+      this.rootStr = this.rootStr.split('').reverse().join('')
+    }
+  },
+  template: `
+  <div v-once>
+    <el-tag type="success">你会发现不能操作更改哦</el-tag><br>
+    {{rootStr}} <el-button @click="doSomething">点我尝试更改rootStr内容</el-button>
+  </div>
+  `
+})
+
 const requireComponent = require.context(
   './components/tempComponents',
   false,
