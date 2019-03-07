@@ -359,7 +359,9 @@
         <button @click="show = !show" :key="show ? 'on' : 'off'">{{show ? 'on' : 'off'}}</button>
       </transition>
     </div>
-    
+    <p v-for="(item, index) in [1, 2, 3, 4]" :key="index" v-show="index>2">
+      {{index}}-{{item}}
+    </p>
 
     <footer id="footer" style="padding-top: 60px;"></footer>
   </div>
