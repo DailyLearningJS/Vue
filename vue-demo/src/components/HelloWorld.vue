@@ -362,9 +362,30 @@
     <p v-for="(item, index) in [1, 2, 3, 4]" :key="index" v-show="index>2">
       {{index}}-{{item}}
     </p>
-     <hr>
+
+
+    <hr>
     <h3>transition group v-move练习</h3>
     <TransitionGroup1></TransitionGroup1>
+
+    <hr>
+    <h3>mixins</h3>
+    <mixin-component></mixin-component>
+
+    <hr>
+    <h3>混入  Vue.expend() Vue.mixin() mixins expends</h3>
+    <hr>
+    <h3>自定义指令</h3>
+    <div>
+      全局指令定义
+      <input v-model="notLazyText" type="text" placeholder="我是全局指令" v-focus>
+    </div>
+    <div>
+      局部指令定义(update：所在组件的 VNode 更新时调用，但是可能发生在其子 VNode 更新之前  所以下面的写法全局变化会触发本组件Vnode变化从而处罚jubufocus指令)
+      <directive-component></directive-component>
+      <!-- <input type="text" v-model="lazyText" placeholder="我是局部指令" v-jubufocus> -->
+    </div>
+    
 
 
 
@@ -426,13 +447,24 @@
 
 <script>
 import TransitionGroup1 from './TransitionGroup1'
+import DirectiveComponent from './DirectiveComponent'
 export default {
   name: 'HelloWorld',
   props: {
     msg: String
   },
   components: {
-    TransitionGroup1
+    TransitionGroup1, DirectiveComponent
+  },
+  directives: {
+    jubufocus: {
+      inserted: (el, binding, vnode, oldVnode) => {
+        console.log("我是指令jubufocus！！！！！！！")
+      },
+      update: (el, binding, vnode, oldVnode) => {
+        console.log("我是指令jubufocus" + vnode)
+      }
+    }
   },
   data () {
     return {

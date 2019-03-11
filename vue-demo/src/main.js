@@ -9,6 +9,7 @@ import TodoItem from '@/components/TodoItem'
 import PropRules from '@/components/PropRules'
 import BootStrap from '@/components/BootstrapDateInput'
 import BaseCheckbox from '@/components/BaseCheckbox'
+import commonMixins from '@/assets/common.js'
 Vue.use(ElementUI)
 Vue.config.productionTip = false
 
@@ -162,6 +163,36 @@ Vue.component('v-once-component', {
   `
 })
 
+Vue.component('mixin-component', {
+  created () {
+    console.log('mixin-component created周期函数调用')
+  },
+  data () {
+    return {
+      num: 0
+    }
+  },
+  mixins: [commonMixins],
+  methods: {
+    addData () {
+      this.num ++ 
+    }
+  },
+  template: `<div>
+  {{num}}<br>
+  <el-button size="mini" type="success" @click="addData">点我调用addData</el-button>
+  <el-button size="mini" type="danger" @click="tempData">点我调用tempData</el-button>
+  </div>`
+})
+
+Vue.directive('focus', {
+  inserted: (el, binding, vnode, oldVnode) => {
+    console.log("全局指令inserted调用", el, binding, vnode, oldVnode)
+  },
+  update: (el) => {
+    console.log("全局指令update调用", el)
+  }
+})
 const requireComponent = require.context(
   './components/tempComponents',
   false,

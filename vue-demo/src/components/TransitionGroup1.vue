@@ -10,7 +10,7 @@
 </template>
 <style lang="scss" scoped>
 ul {
-  decoration-style: none;
+  list-style: none;
 }
 .list-item{
   padding:5px;
