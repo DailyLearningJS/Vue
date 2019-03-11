@@ -362,6 +362,11 @@
     <p v-for="(item, index) in [1, 2, 3, 4]" :key="index" v-show="index>2">
       {{index}}-{{item}}
     </p>
+     <hr>
+    <h3>transition group v-move练习</h3>
+    <TransitionGroup1></TransitionGroup1>
+
+
 
     <footer id="footer" style="padding-top: 60px;"></footer>
   </div>
@@ -420,10 +425,14 @@
 </style>
 
 <script>
+import TransitionGroup1 from './TransitionGroup1'
 export default {
   name: 'HelloWorld',
   props: {
     msg: String
+  },
+  components: {
+    TransitionGroup1
   },
   data () {
     return {
