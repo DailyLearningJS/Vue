@@ -208,6 +208,11 @@ Vue.component('anchored-heading', {
     }
   }
 })
+
+Vue.filter('toBeUpper', function(value) {
+  if (!value) return ''
+  return value.toUpperCase()
+})
 const requireComponent = require.context(
   './components/tempComponents',
   false,

@@ -391,6 +391,12 @@
     <anchored-heading :level="6">我是h6哦</anchored-heading>
     <anchored-heading :level="3">我是h3哦</anchored-heading>
 
+
+    <h3>过滤器使用</h3>
+    <el-input size="mini" placeholder="输入内容" v-model="lazyText"></el-input>
+    {{lazyText | toBeUpper}}  ||||
+    <filter-component :text="lazyText | toBeUpper"></filter-component>
+
     <footer id="footer" style="padding-top: 60px;"></footer>
   </div>
 </template>
@@ -450,13 +456,14 @@
 <script>
 import TransitionGroup1 from './TransitionGroup1'
 import DirectiveComponent from './DirectiveComponent'
+import FilterComponent from './FilterComponent'
 export default {
   name: 'HelloWorld',
   props: {
     msg: String
   },
   components: {
-    TransitionGroup1, DirectiveComponent
+    TransitionGroup1, DirectiveComponent, FilterComponent
   },
   directives: {
     jubufocus: {
