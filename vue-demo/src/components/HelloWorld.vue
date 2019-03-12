@@ -386,8 +386,10 @@
       <!-- <input type="text" v-model="lazyText" placeholder="我是局部指令" v-jubufocus> -->
     </div>
     
-
-
+    <hr>
+    <h3>render函数使用练习</h3>
+    <anchored-heading :level="6">我是h6哦</anchored-heading>
+    <anchored-heading :level="3">我是h3哦</anchored-heading>
 
     <footer id="footer" style="padding-top: 60px;"></footer>
   </div>

@@ -193,6 +193,21 @@ Vue.directive('focus', {
     console.log("全局指令update调用", el)
   }
 })
+
+Vue.component('anchored-heading', {
+  render: function(createElement){
+    return createElement(
+      'h' + this.level,
+      this.$slots.default
+    )
+  },
+  props: {
+    level: {
+      type: Number,
+      required: true
+    }
+  }
+})
 const requireComponent = require.context(
   './components/tempComponents',
   false,

@@ -1,18 +1,14 @@
 export default {
   data () {
     return {
-      mixinMessage: "hello, i'm 糖少"
+      mixinMessage: "I'm 糖少"
     }
   },
   created () {
-    this.$alert(this.mixinMessage, '注意', {
-      confirmButtonText: '确定',
-      callback: () => {
-        this.$message({
-          type: 'success',
-          message: "朕知道了 = = "
-        })
-      }
+    this.$notify({
+      type: 'success',
+      title: 'hello',
+      message: this.mixinMessage
     })
   },
   methods: {
