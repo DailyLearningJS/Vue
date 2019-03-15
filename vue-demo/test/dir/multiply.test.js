@@ -33,3 +33,32 @@ describe('尝试请求', function () {
         })
     })
 })
+
+
+describe('钩子函数', function () {
+    var foo = false
+    var foo1 = false
+    var foo2 = false
+    beforeEach(function(){
+        foo = true
+    })
+    before(function (done) {
+        setTimeout(function () {
+            foo2 = true
+            done()
+        }, 50)
+    })
+    after(function () {
+       foo1 = true 
+    })
+    
+    it('beforEach 钩子校验', function () {
+        expect(foo).to.be.equal(true)
+    })
+    it('after 钩子函数校验', function () {
+        expect(foo1).to.not.be.equal(true)
+    })
+    it('before 钩子异步函数校验', function () {
+        expect(foo2).to.equal(true)
+    })
+})

@@ -3,3 +3,4 @@
 --growl
 --timeout 5000
 --slow 1000
+--require babel-core/register
